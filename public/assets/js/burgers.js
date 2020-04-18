@@ -3,14 +3,15 @@ $(() => {
   $(".eat-burger").on("click", function () {
     const id = $(this).data("id");
     const updateBurger = {
-      devoured: 1
+      devoured: true
     };
 
     console.log(id);
 
     $.ajax(`/api/burgers/${id}`, {
       type: "PUT",
-      data: updateBurger
+      data: JSON.stringify(updateBurger),
+      contentType: "application/json; charset=UTF-8"
     }).then(() => {
       location.reload();
     });
@@ -21,8 +22,7 @@ $(() => {
     event.preventDefault();
 
     const newBurger = {
-      burger_name: $("#name").val().trim(),
-      devoured: false
+      burger_name: $("#name").val().trim()
     };
 
     $.ajax("/api/burgers", {
