@@ -6,9 +6,7 @@ $(() => {
       devoured: true
     };
 
-    console.log(id);
-
-    $.ajax(`/api/burgers/${id}`, {
+    $.ajax(`/api/burgers/${id}/devour`, {
       type: "PUT",
       data: JSON.stringify(updateBurger),
       contentType: "application/json; charset=UTF-8"
@@ -28,6 +26,16 @@ $(() => {
     $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger
+    }).then(() => {
+      location.reload();
+    });
+  });
+
+  $(".delete-burger").on("click", function () {
+    const id = $(this).data("id");
+
+    $.ajax(`/api/burgers/${id}`, {
+      type: "DELETE"
     }).then(() => {
       location.reload();
     });

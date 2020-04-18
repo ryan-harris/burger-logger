@@ -9,8 +9,12 @@ const burger = {
     orm.insertOne("burgers", burgerData, cb);
   },
 
-  updateOne: (burgerData, criteria, cb) => {
-    orm.updateOne("burgers", burgerData, criteria, cb);
+  updateOne: (burgerData, condition, cb) => {
+    orm.updateOne("burgers", burgerData, condition, cb);
+  },
+
+  delete: (condition, cb) => {
+    orm.delete("burgers", condition, cb);
   }
 };
 

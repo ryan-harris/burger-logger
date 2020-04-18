@@ -16,19 +16,30 @@ router.post("/api/burgers", (req, res) => {
   };
 
   burger.insertOne(newBurger, (result) => {
-    if (result.affectedRows === 0) {
+    if (result && result.affectedRows === 0) {
       return res.sendStatus(404);
     }
     res.sendStatus(200);
   });
 });
 
-router.put("/api/burgers/:id", (req, res) => {
+router.put("/api/burgers/:id/devour", (req, res) => {
   const condition = { id: req.params.id };
   const update = { devoured: req.body.devoured };
 
   burger.updateOne(update, condition, (result) => {
-    if (result.affectedRows === 0) {
+    if (result && result.affectedRows === 0) {
+      return res.sendStatus(404);
+    }
+    res.sendStatus(200);
+  });
+});
+
+router.delete("/api/burgers/:id", (req, res) => {
+  const condition = { id: req.params.id };
+
+  burger.delete(condition, (result) => {
+    if (result && result.affectedRows === 0) {
       return res.sendStatus(404);
     }
     res.sendStatus(200);
