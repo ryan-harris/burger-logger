@@ -1,33 +1,36 @@
-<h1>Burgers</h1>
+<h1>Eat Some Burgers</h1>
+<img class="center-image" src="/assets/img/burger.svg" width="200" height="auto">
 
-<h3>Burgers to Eat</h3>
-<ul>
-  {{#each burgers}}
-  {{#unless devoured}}
-  <li>
-    {{id}}: {{burger_name}}
+<div class="burger-container">
+  <div class="burger-list">
+    <h2>Burgers to Eat</h2>
+    {{#each burgers}}
+    {{#unless devoured}}
+    <div class="burger">
+      <p>{{burger_name}}</p>
+      <button class="eat-burger" data-id="{{id}}">Devour!</button>
+    </div>
+    {{/unless}}
+    {{/each}}
+  </div>
 
-    <button class="eat-burger" data-id="{{id}}">
-      Devour It!
-    </button>
-  </li>
-  {{/unless}}
-  {{/each}}
-</ul>
+  <div class="burger-list">
+    <h2>Devoured Burgers</h2>
+    {{#each burgers}}
+    {{#if devoured}}
+    <div class="burger">
+      <p>{{burger_name}}</p>
+    </div>
+    {{/if}}
+    {{/each}}
+  </div>
+</div>
 
-<h3>Devoured Burgers</h3>
-<ul>
-  {{#each burgers}}
-  {{#if devoured}}
-  <li>
-    {{id}}: {{burger_name}}
-  </li>
-  {{/if}}
-  {{/each}}
-</ul>
-
-<form class="create-burger">
-  <label for="name">Burger Name:</label>
-  <input type="text" id="name"><br><br>
-  <input type="submit" value="Submit">
-</form>
+<div class="form-container">
+  <h3>Add a Burger</h3>
+  <form class="create-burger">
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <button>Submit</button>
+  </form>
+</div>
